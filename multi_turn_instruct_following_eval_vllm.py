@@ -89,6 +89,12 @@ def main(
         )
         final_metric_result[step] = step_metric_result
 
+    final_metric_result_df = pd.DataFrame.from_dict(final_metric_result, orient="index")
+    final_metric_result_df.to_json(
+        f"{output_filepath_prefix}/final_metrics_{model_name}.json", orient="records", indent=4
+    )
+
+
     logger.info(
         f"Total time: {time.time() - start}\n Number of rows: {num_rows}, \n Number of processes: 1"
     )
